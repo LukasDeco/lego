@@ -1,4 +1,4 @@
-module github.com/go-acme/lego/v4
+module github.com/LukasDeco/lego
 
 go 1.19
 
