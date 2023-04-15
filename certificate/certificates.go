@@ -57,6 +57,7 @@ type ObtainRequest struct {
 	Domains                        []string
 	Bundle                         bool
 	PrivateKey                     crypto.PrivateKey
+	PKSCType                       *certcrypto.PKCSType
 	MustStaple                     bool
 	PreferredChain                 string
 	AlwaysDeactivateAuthorizations bool
@@ -139,7 +140,7 @@ func (c *Certifier) Obtain(request ObtainRequest) (*Resource, error) {
 	log.Infof("[%s] acme: Validations succeeded; requesting certificates", strings.Join(domains, ", "))
 
 	failures := make(obtainError)
-	cert, err := c.getForOrder(domains, order, request.Bundle, request.PrivateKey, request.MustStaple, request.PreferredChain)
+	cert, err := c.getForOrder(domains, order, request.Bundle, request.PrivateKey, request.MustStaple, request.PreferredChain, request.PKSCType)
 	if err != nil {
 		for _, auth := range authz {
 			failures[challenge.GetTargetedDomain(auth)] = err
@@ -228,7 +229,7 @@ func (c *Certifier) ObtainForCSR(request ObtainForCSRRequest) (*Resource, error)
 	return cert, nil
 }
 
-func (c *Certifier) getForOrder(domains []string, order acme.ExtendedOrder, bundle bool, privateKey crypto.PrivateKey, mustStaple bool, preferredChain string) (*Resource, error) {
+func (c *Certifier) getForOrder(domains []string, order acme.ExtendedOrder, bundle bool, privateKey crypto.PrivateKey, mustStaple bool, preferredChain string, pkcsType *certcrypto.PKCSType) (*Resource, error) {
 	if privateKey == nil {
 		var err error
 		privateKey, err = certcrypto.GeneratePrivateKey(c.options.KeyType)
@@ -259,7 +260,7 @@ func (c *Certifier) getForOrder(domains []string, order acme.ExtendedOrder, bund
 		return nil, err
 	}
 
-	return c.getForCSR(domains, order, bundle, csr, certcrypto.PEMEncode(privateKey), preferredChain)
+	return c.getForCSR(domains, order, bundle, csr, certcrypto.PEMEncodeWithPKCSType(privateKey, pkcsType), preferredChain)
 }
 
 func (c *Certifier) getForCSR(domains []string, order acme.ExtendedOrder, bundle bool, csr, privateKeyPem []byte, preferredChain string) (*Resource, error) {
