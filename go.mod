@@ -1,6 +1,8 @@
-module github.com/LukasDeco/lego
+module github.com/go-acme/lego/v4
 
 go 1.19
+
+replace github.com/go-acme/lego/v4 => github.com/LukasDeco/lego/v4 v4.0.0
 
 // github.com/exoscale/egoscale v1.19.0 => It is an error, please don't use it.
 require (
