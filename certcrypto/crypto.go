@@ -25,9 +25,15 @@ const (
 	EC256   = KeyType("P256")
 	EC384   = KeyType("P384")
 	RSA2048 = KeyType("2048")
-	RSA3072 = KeyType("3072")
 	RSA4096 = KeyType("4096")
 	RSA8192 = KeyType("8192")
+)
+
+type PKCSType int
+
+var (
+	PKCS1 PKCSType = 1
+	PKCS8 PKCSType = 8
 )
 
 const (
@@ -122,8 +128,6 @@ func GeneratePrivateKey(keyType KeyType) (crypto.PrivateKey, error) {
 		return ecdsa.GenerateKey(elliptic.P384(), rand.Reader)
 	case RSA2048:
 		return rsa.GenerateKey(rand.Reader, 2048)
-	case RSA3072:
-		return rsa.GenerateKey(rand.Reader, 3072)
 	case RSA4096:
 		return rsa.GenerateKey(rand.Reader, 4096)
 	case RSA8192:
@@ -150,17 +154,30 @@ func GenerateCSR(privateKey crypto.PrivateKey, domain string, san []string, must
 }
 
 func PEMEncode(data interface{}) []byte {
-	return pem.EncodeToMemory(PEMBlock(data))
+	return pem.EncodeToMemory(PEMBlock(data, nil))
 }
 
-func PEMBlock(data interface{}) *pem.Block {
+func PEMEncodeWithPKCSType(data interface{}, pkcsType *PKCSType) []byte {
+	return pem.EncodeToMemory(PEMBlock(data, pkcsType))
+}
+
+func PEMBlock(data interface{}, pkcsType *PKCSType) *pem.Block {
 	var pemBlock *pem.Block
 	switch key := data.(type) {
 	case *ecdsa.PrivateKey:
 		keyBytes, _ := x509.MarshalECPrivateKey(key)
 		pemBlock = &pem.Block{Type: "EC PRIVATE KEY", Bytes: keyBytes}
 	case *rsa.PrivateKey:
-		pemBlock = &pem.Block{Type: "RSA PRIVATE KEY", Bytes: x509.MarshalPKCS1PrivateKey(key)}
+		if pkcsType == nil {
+			pkcsType = &PKCS1
+		}
+		switch *pkcsType {
+		case PKCS1:
+			pemBlock = &pem.Block{Type: "RSA PRIVATE KEY", Bytes: x509.MarshalPKCS1PrivateKey(key)}
+		case PKCS8:
+			bytes, _ := x509.MarshalPKCS8PrivateKey(key)
+			pemBlock = &pem.Block{Type: "PRIVATE KEY", Bytes: bytes}
+		}
 	case *x509.CertificateRequest:
 		pemBlock = &pem.Block{Type: "CERTIFICATE REQUEST", Bytes: key.Raw}
 	case DERCertificateBytes:
