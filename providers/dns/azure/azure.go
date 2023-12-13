@@ -12,8 +12,8 @@ import (
 	"github.com/Azure/go-autorest/autorest"
 	aazure "github.com/Azure/go-autorest/autorest/azure"
 	"github.com/Azure/go-autorest/autorest/azure/auth"
-	"github.com/go-acme/lego/v4/challenge"
-	"github.com/go-acme/lego/v4/platform/config/env"
+	"github.com/LukasDeco/lego/v4/challenge"
+	"github.com/LukasDeco/lego/v4/platform/config/env"
 )
 
 const defaultMetadataEndpoint = "http://169.254.169.254"

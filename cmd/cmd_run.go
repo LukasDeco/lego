@@ -6,10 +6,10 @@ import (
 	"os"
 	"strings"
 
-	"github.com/go-acme/lego/v4/certificate"
-	"github.com/go-acme/lego/v4/lego"
-	"github.com/go-acme/lego/v4/log"
-	"github.com/go-acme/lego/v4/registration"
+	"github.com/LukasDeco/lego/v4/certificate"
+	"github.com/LukasDeco/lego/v4/lego"
+	"github.com/LukasDeco/lego/v4/log"
+	"github.com/LukasDeco/lego/v4/registration"
 	"github.com/urfave/cli/v2"
 )
 

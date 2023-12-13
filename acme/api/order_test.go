@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/go-acme/lego/v4/acme"
-	"github.com/go-acme/lego/v4/platform/tester"
+	"github.com/LukasDeco/lego/v4/acme"
+	"github.com/LukasDeco/lego/v4/platform/tester"
 	"github.com/go-jose/go-jose/v3"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

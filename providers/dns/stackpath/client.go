@@ -8,7 +8,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/go-acme/lego/v4/challenge/dns01"
+	"github.com/LukasDeco/lego/v4/challenge/dns01"
 	"golang.org/x/net/publicsuffix"
 )
 

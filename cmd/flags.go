@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/go-acme/lego/v4/lego"
+	"github.com/LukasDeco/lego/v4/lego"
 	"github.com/urfave/cli/v2"
 	"software.sslmate.com/src/go-pkcs12"
 )

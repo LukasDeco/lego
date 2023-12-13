@@ -10,8 +10,8 @@ import (
 	"github.com/Azure/azure-sdk-for-go/services/privatedns/mgmt/2018-09-01/privatedns"
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/to"
-	"github.com/go-acme/lego/v4/challenge/dns01"
-	"github.com/go-acme/lego/v4/platform/config/env"
+	"github.com/LukasDeco/lego/v4/challenge/dns01"
+	"github.com/LukasDeco/lego/v4/platform/config/env"
 )
 
 // dnsProviderPrivate implements the challenge.Provider interface for Azure Private Zone DNS.

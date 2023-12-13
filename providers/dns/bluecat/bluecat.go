@@ -7,10 +7,10 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/go-acme/lego/v4/challenge/dns01"
-	"github.com/go-acme/lego/v4/log"
-	"github.com/go-acme/lego/v4/platform/config/env"
-	"github.com/go-acme/lego/v4/providers/dns/bluecat/internal"
+	"github.com/LukasDeco/lego/v4/challenge/dns01"
+	"github.com/LukasDeco/lego/v4/log"
+	"github.com/LukasDeco/lego/v4/platform/config/env"
+	"github.com/LukasDeco/lego/v4/providers/dns/bluecat/internal"
 )
 
 // Environment variables names.

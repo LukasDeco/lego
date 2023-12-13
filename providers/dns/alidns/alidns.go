@@ -6,13 +6,13 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/LukasDeco/lego/v4/challenge/dns01"
+	"github.com/LukasDeco/lego/v4/platform/config/env"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/auth"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/auth/credentials"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/services/alidns"
-	"github.com/go-acme/lego/v4/challenge/dns01"
-	"github.com/go-acme/lego/v4/platform/config/env"
 	"golang.org/x/net/idna"
 )
 

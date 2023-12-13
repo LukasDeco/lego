@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/go-acme/lego/v4/challenge/dns01"
+	"github.com/LukasDeco/lego/v4/challenge/dns01"
 	querystring "github.com/google/go-querystring/query"
 )
 

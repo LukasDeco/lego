@@ -8,6 +8,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/LukasDeco/lego/v4/challenge/dns01"
+	"github.com/LukasDeco/lego/v4/platform/config/env"
+	"github.com/LukasDeco/lego/v4/platform/wait"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/credentials"
@@ -15,9 +18,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/route53"
-	"github.com/go-acme/lego/v4/challenge/dns01"
-	"github.com/go-acme/lego/v4/platform/config/env"
-	"github.com/go-acme/lego/v4/platform/wait"
 )
 
 // Environment variables names.

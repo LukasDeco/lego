@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/go-acme/lego/v4/challenge/dns01"
-	"github.com/go-acme/lego/v4/platform/config/env"
-	"github.com/go-acme/lego/v4/providers/dns/vkcloud/internal"
+	"github.com/LukasDeco/lego/v4/challenge/dns01"
+	"github.com/LukasDeco/lego/v4/platform/config/env"
+	"github.com/LukasDeco/lego/v4/providers/dns/vkcloud/internal"
 	"github.com/gophercloud/gophercloud"
 )
 

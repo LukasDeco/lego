@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/LukasDeco/lego/v4/challenge/dns01"
 	configdns "github.com/akamai/AkamaiOPEN-edgegrid-golang/configdns-v2"
-	"github.com/go-acme/lego/v4/challenge/dns01"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/LukasDeco/lego/v4/challenge/dns01"
+	"github.com/LukasDeco/lego/v4/platform/config/env"
 	egoscale "github.com/exoscale/egoscale/v2"
-	"github.com/go-acme/lego/v4/challenge/dns01"
-	"github.com/go-acme/lego/v4/platform/config/env"
 )
 
 // Default Exoscale API endpoint.

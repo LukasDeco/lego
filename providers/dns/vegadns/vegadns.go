@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/LukasDeco/lego/v4/challenge/dns01"
+	"github.com/LukasDeco/lego/v4/platform/config/env"
 	vegaClient "github.com/OpenDNS/vegadns2client"
-	"github.com/go-acme/lego/v4/challenge/dns01"
-	"github.com/go-acme/lego/v4/platform/config/env"
 )
 
 // Environment variables names.
