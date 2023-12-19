@@ -27,12 +27,14 @@ const (
 
 // Config is used to configure the creation of the DNSProvider.
 type Config struct {
-	BaseURL                string
-	AuthToken              string
-	TTL                    int
-	PropagationTimeout     time.Duration
-	PollingInterval        time.Duration
-	HTTPClient             *http.Client
+	BaseURL            string
+	AuthToken          string
+	TTL                int
+	PropagationTimeout time.Duration
+	PollingInterval    time.Duration
+	HTTPClient         *http.Client
+	// useful for when you are creating a certificate for a subdomain.
+	// If you use "app.example.com" in your certificate request, but don't specify this as "example.com", digital ocean will look for the domain "app.example.com" and will return 404
 	DNSChallengeRootDomain string
 }
 
