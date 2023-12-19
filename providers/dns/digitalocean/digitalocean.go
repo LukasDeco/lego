@@ -27,12 +27,13 @@ const (
 
 // Config is used to configure the creation of the DNSProvider.
 type Config struct {
-	BaseURL            string
-	AuthToken          string
-	TTL                int
-	PropagationTimeout time.Duration
-	PollingInterval    time.Duration
-	HTTPClient         *http.Client
+	BaseURL                string
+	AuthToken              string
+	TTL                    int
+	PropagationTimeout     time.Duration
+	PollingInterval        time.Duration
+	HTTPClient             *http.Client
+	DNSChallengeRootDomain string
 }
 
 // NewDefaultConfig returns a default configuration for the DNSProvider.

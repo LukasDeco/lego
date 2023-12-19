@@ -37,6 +37,11 @@ func (d *DNSProvider) removeTxtRecord(domain string, recordID int) error {
 		return fmt.Errorf("could not determine zone for domain %q: %w", domain, err)
 	}
 
+	rootDomain := dns01.UnFqdn(authZone)
+	if d.config.DNSChallengeRootDomain != "" && rootDomain != d.config.DNSChallengeRootDomain {
+		domain = d.config.DNSChallengeRootDomain
+	}
+
 	reqURL := fmt.Sprintf("%s/v2/domains/%s/records/%d", d.config.BaseURL, dns01.UnFqdn(authZone), recordID)
 	req, err := d.newRequest(http.MethodDelete, reqURL, nil)
 	if err != nil {
@@ -68,7 +73,12 @@ func (d *DNSProvider) addTxtRecord(fqdn, value string) (*txtRecordResponse, erro
 		return nil, err
 	}
 
-	reqURL := fmt.Sprintf("%s/v2/domains/%s/records", d.config.BaseURL, dns01.UnFqdn(authZone))
+	domain := dns01.UnFqdn(authZone)
+	if d.config.DNSChallengeRootDomain != "" && domain != d.config.DNSChallengeRootDomain {
+		domain = d.config.DNSChallengeRootDomain
+	}
+
+	reqURL := fmt.Sprintf("%s/v2/domains/%s/records", d.config.BaseURL, domain)
 	req, err := d.newRequest(http.MethodPost, reqURL, bytes.NewReader(body))
 	if err != nil {
 		return nil, err
